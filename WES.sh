@@ -7,11 +7,11 @@ module load R
 
 #echo "##############Faidx is started"
 #/common/genomics-core/anaconda2/bin/samtools faidx $REF/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna
-#echo "Subject: Faidx is done for REF" | sendmail -v yizhou.wang@cshs.org
+
 
 #echo "##############Create SequenceDictionary is started"
 #/common/genomics-core/anaconda2/bin/java -jar $PICARD/picard.jar CreateSequenceDictionary R=$REF/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna O=$REF/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.dict
-#echo "Subject: Create SequenceDictionary is done for REF" | sendmail -v yizhou.wang@cshs.org
+
 
 echo "##############Mapping is started"
 /common/genomics-core/anaconda2/bin/bwa mem -M -t 10 -R '@RG\tID:$1\tLB:$1\tPL:ILLUMINA\tPM:HISEQ\tSM:$1' $REF/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna $2 $3 > $1_aligned_reads.sam
@@ -116,6 +116,6 @@ echo "##############GATK eval for SNP  is started"
 echo "##############GATK eval for Indels  is started"
 /common/genomics-core/anaconda2/bin/java -jar $PICARD/GenomeAnalysisTK.jar -T VariantEval --eval $1_filtered_indels_final.vcf -R $REF/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna -o $1.indels.eval
 echo "Subject: Analysis is done for $1" | sendmail -v di.wu@cshs.org
-#echo "Subject: Analysis is done for $1" | sendmail -v yizhou.wang@cshs.org
+
 
 #bedtools genomecov -bga -ibam recal_reads.bam > genomecov.bedgraph
