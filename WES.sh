@@ -4,9 +4,10 @@ REF="/common/genomics-core/reference/BWA/hg38_WES"
 PICARD="/common/genomics-core/apps/"
 
 module load R
+module load samtools
 
 #echo "##############Faidx is started"
-#/common/genomics-core/anaconda2/bin/samtools faidx $REF/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna
+#/hpc/apps/samtools/1.6/bin/samtools faidx $REF/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna
 
 
 #echo "##############Create SequenceDictionary is started"
@@ -30,7 +31,7 @@ echo "##############Collect Alignment & Insert Size Metrics is started"
 
 
 echo "##############Depth calculation is started"
-/common/genomics-core/anaconda2/bin/samtools depth -a $1_sorted_reads.bam > $1_depth_out.txt
+/hpc/apps/samtools/1.6/bin/samtools depth -a $1_sorted_reads.bam > $1_depth_out.txt
 
 
 echo "##############Sorting BAM is started"
